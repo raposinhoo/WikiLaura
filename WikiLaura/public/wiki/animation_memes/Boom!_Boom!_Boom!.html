@@ -1,0 +1,414 @@
+<!--Eu falo "six" e ela fala "seven"
+(Yeah)
+Eu falo "bora" e ela fala "Bill"
+(An)
+Falo "Ronaldo" e ela fala "huh"
+Eu falo "lá" e ela fala "ele"
+(Yeah)
+Eu falo "an?" e ela fala "do Oruam"
+Eu falo "morango", ela fala "do amor"
+Eu falo "tralalero" e ela fala "tralala"
+Eu falo "tung tung tung" e ela fala "sahur"-->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boom! Boom! Boom! - WikiLaura</title>
+    <link rel="stylesheet" href="../../css/global.css">
+    <style>
+        /* ── Tema: Animation Meme / Musical ── */
+
+        #conteudo-artigo-viewing {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        #conteudo-artigo-viewing h1 {
+            font-family: var(--ff-display);
+            font-size: clamp(2.2rem, 6vw, 3.2rem);
+            font-weight: 300;
+            color: var(--branco);
+            letter-spacing: 0.05em;
+            line-height: 1.1;
+            text-shadow: 0 0 18px #e87aa044, 0 0 40px #b0406030;
+            animation: pulso 2.4s ease-in-out infinite;
+            margin-bottom: 0.5rem;
+        }
+
+        @keyframes pulso {
+            0%, 100% { text-shadow: 0 0 14px #e87aa044, 0 0 30px #b0406030; }
+            50%       { text-shadow: 0 0 28px #f7b8cb66, 0 0 60px #e87aa055; }
+        }
+
+        #conteudo-artigo-viewing > p {
+            font-style: italic;
+            color: var(--texto-suave);
+            margin-bottom: 1.8rem;
+            font-size: 0.95rem;
+        }
+
+        #conteudo-artigo-viewing span {
+            display: block;
+            line-height: 1.75;
+            margin-bottom: 1rem;
+            color: var(--texto);
+            font-size: 0.95rem;
+        }
+
+        /* ── Barra de ritmo ── */
+        #barra-ritmo {
+            display: flex;
+            gap: 3px;
+            align-items: flex-end;
+            height: 26px;
+            margin-bottom: 2rem;
+        }
+
+        #barra-ritmo span {
+            display: block;
+            width: 5px;
+            background: linear-gradient(to top, var(--rosa), var(--amarelo-rosado));
+            border-radius: 2px;
+            animation: barra var(--dur, 0.8s) ease-in-out infinite alternate;
+            margin: 0;
+        }
+
+        @keyframes barra {
+            from { height: 4px; opacity: 0.35; }
+            to   { height: 100%; opacity: 1; }
+        }
+
+        /* ── Galeria ── */
+        #galeria-div {
+            margin-top: 3rem;
+        }
+
+        #galeria-div h2 {
+            font-family: var(--ff-body);
+            font-size: 0.65rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--texto-suave);
+            padding-bottom: 0.8rem;
+            margin-bottom: 1.8rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        #galeria-div > div {
+            display: inline-block;
+            vertical-align: top;
+            width: calc(25% - 0.9rem);
+            margin-right: 0.9rem;
+            margin-bottom: 1.2rem;
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border);
+            padding: 0.5rem;
+            box-sizing: border-box;
+            transition: border-color 0.25s;
+        }
+
+        #galeria-div > div:hover {
+            border-color: var(--border-hover);
+        }
+
+        #galeria-div img {
+            width: 100%;
+            display: block;
+            filter: brightness(0.85) saturate(0.8);
+            transition: filter 0.3s;
+        }
+
+        #galeria-div > div:hover img {
+            filter: brightness(0.97) saturate(1);
+        }
+
+        #galeria-div p {
+            font-size: 0.72rem;
+            color: var(--texto-suave);
+            margin: 0.5rem 0 0.2rem;
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* ── Veja também ── */
+        #veja-tambem {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        #veja-tambem > p {
+            font-size: 0.82rem;
+            color: var(--texto-suave);
+            line-height: 2.2;
+        }
+
+        #veja-tambem a {
+            display: inline-block;
+            margin: 0 0.3rem 0.3rem 0;
+            padding: 0.2rem 0.7rem;
+            border: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            color: var(--rosa-claro);
+            font-size: 0.78rem;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        #veja-tambem a:hover {
+            border-color: var(--rosa);
+            color: var(--branco);
+        }
+
+        #veja-tambem a[id="tem-certeza-de-clicar"] {
+            border-color: #6a2030;
+            color: #e0909a;
+        }
+
+        #veja-tambem a[id="tem-certeza-de-clicar"]:hover {
+            border-color: #e87a8a;
+            color: var(--branco);
+        }
+
+        /* ── Modal de aviso ── */
+        #modal-aviso {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background-color: #0a0709e8;
+            backdrop-filter: blur(6px);
+            animation: fade-in 0.2s ease both;
+        }
+
+        #modal-aviso.visivel {
+            display: flex;
+        }
+
+        #modal-caixa {
+            background-color: #1a0e15;
+            border: 1px solid #6a2030;
+            max-width: 420px;
+            width: 100%;
+            padding: 2rem 2.2rem;
+            position: relative;
+            animation: slide-up 0.25s ease both;
+        }
+
+        /* cantos decorativos */
+        #modal-caixa::before,
+        #modal-caixa::after {
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border-color: #e87a8a;
+            border-style: solid;
+        }
+        #modal-caixa::before { top: -1px;    left: -1px;  border-width: 1px 0 0 1px; }
+        #modal-caixa::after  { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
+
+        #modal-titulo {
+            font-family: var(--ff-display);
+            font-style: italic;
+            font-weight: 300;
+            font-size: 1.1rem;
+            color: var(--rosa-claro);
+            margin-bottom: 0.6rem;
+        }
+
+        #modal-texto {
+            font-size: 0.82rem;
+            color: var(--texto-suave);
+            line-height: 1.7;
+            margin-bottom: 1.6rem;
+        }
+
+        #modal-destino {
+            font-size: 0.72rem;
+            color: #9a5060;
+            word-break: break-all;
+            margin-bottom: 1.6rem;
+            font-family: monospace;
+            letter-spacing: 0.03em;
+        }
+
+        #modal-acoes {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: flex-end;
+        }
+
+        .modal-btn {
+            background: transparent;
+            font-family: var(--ff-body);
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            padding: 0.55rem 1.4rem;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+            border: 1px solid var(--border);
+            color: var(--texto-suave);
+        }
+
+        .modal-btn:hover {
+            background-color: var(--border);
+            color: var(--texto);
+        }
+
+        .modal-btn.confirmar {
+            border-color: #6a2030;
+            color: #e0909a;
+        }
+
+        .modal-btn.confirmar:hover {
+            background-color: #6a2030;
+            color: var(--branco);
+        }
+
+        @keyframes fade-in  { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slide-up { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ── Responsivo ── */
+        @media (max-width: 600px) {
+            #galeria-div > div {
+                width: calc(50% - 0.6rem);
+            }
+        }
+    </style>
+</head>
+<body>
+    <p class="site-titulo">WikiLaura</p>
+    <p class="aviso-categoria">OPAA!! Esse artigo e um SHIP GLOBAL! O que significa que: algumas as fandoms estao nela, inclusive personagens.</p>
+
+    <div id="conteudo-artigo-viewing">
+        <h1>BOom! BOom! BOom!</h1>
+        <p>...i want you in my room!</p>
+
+        <div id="barra-ritmo" aria-hidden="true"></div>
+
+        <span>E um Meme Animation, ou seja, ela esta em todas as fandoms. Famosa pela sua musica e batida gostosinha e dancante, vale lembrar tambem que <a href="https://youtu.be/WCv93EM-1ZA" target="_blank" rel="noopener">existe uma versao Creeper X Enderman (YouTube)</a> nessa brincadeira.</span>
+
+        <span>esse <a href="https://open.spotify.com/intl-pt/track/3TFFsh5JbywgAZWFWQsO4a?si=e7f4f5db86c04889" target="_blank" rel="noopener">link</a> e uma musica que combina com esses ships abaixo</span>
+
+        <div id="galeria-div">
+            <h2>Galeria e etc</h2>
+
+            <div id="galeria1">
+                <img src="../../img/i_dont_need_to_see_this_twin.jpg" role="img" alt="">
+                <p>em que mundo vivemos?</p>
+            </div>
+
+            <div id="galeria2">
+                <img src="../../img/cat_twins.jpg" role="img" alt="">
+                <p>creeper e enderman se fossem gatos.</p>
+            </div>
+
+            <div id="galeria3">
+                <img src="../../img/From KlickPin CF Reggie the mouse _ Furry art Cute drawings Furry pics.jpg" role="img" alt="">
+                <p>adivinha quem comecou a fama do meme?</p>
+            </div>
+
+            <div id="galeria4">
+                <img src="https://c.tenor.com/MmSJ0H9RD98AAAAC/tenor.gif" role="img" alt="">
+                <p>looking at viewer</p>
+            </div>
+        </div>
+
+        <div id="veja-tambem">
+            <p>Esse artigo esta relacionado a:
+                <a href="https://www.youtube.com/watch?v=R0cNe7eNw10&pp=ygUOYW5pbWF0aW9uIG1lbWU%3D" id="tem-certeza-de-clicar">Yo Bug-nny! (Hollow Knight)</a>
+                <a href="https://www.youtube.com/watch?v=6V3EVjr89WA&pp=ygUdYW5pbWF0aW9uIG1lbWUgcG9wcHkgcGxheXRpbWU%3D" id="tem-certeza-de-clicar">Robot Hugs (Smilling Critters)</a>
+                <a href="https://www.youtube.com/watch?v=4kD6TZqMjq8&pp=ygUWYW5pbWF0aW9uIG1lbWUgcG9rZW1vbg%3D%3D" id="tem-certeza-de-clicar">Not My Problem (Sylveon)</a>
+                <a href="https://www.youtube.com/watch?v=MFBt7rCcFBo&pp=ygUWYW5pbWF0aW9uIG1lbWUgcG9rZW1vbg%3D%3D" id="tem-certeza-de-clicar">Nokotan Is a Baddie (pelo titulo, ja da pra saber.)</a>
+                <a href="https://www.youtube.com/watch?v=t7mw3kSKCwQ&pp=ugMGCgJwdBABugUEEgJwdMoFD2NhdG5hcCB4IGRvZ2RhedgHAQ%3D%3D">A Sweet Moment of Love and Family (Smilling Critters)</a>
+                <a href="https://drive.google.com/drive/folders/1PPDJcyBaiYkKslpBo7V9YdLmDVn_B5EP" id="tem-certeza-de-clicar">Noite Perigosa (OkegomFag)</a>
+                <a href="https://drive.google.com/drive/folders/1vBASGhYYEOSrrE9dxFDfRwoIxYK6nnc-?usp=sharing" id="tem-certeza-de-clicar">Beijao Do Caralho (OkegomFag)</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Modal de aviso -->
+    <div id="modal-aviso" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+        <div id="modal-caixa">
+            <p id="modal-titulo">tem certeza?</p>
+            <p id="modal-texto">esse link pode ter conteudo sensivel ou inesperado. voce esta saindo da WikiLaura.</p>
+            <p id="modal-destino"></p>
+            <div id="modal-acoes">
+                <button class="modal-btn cancelar" id="modal-cancelar">voltar</button>
+                <button class="modal-btn confirmar" id="modal-confirmar">continuar mesmo assim</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ── Barra de ritmo ──
+        (function () {
+            const barra = document.getElementById('barra-ritmo');
+            for (let i = 0; i < 18; i++) {
+                const s = document.createElement('span');
+                s.style.setProperty('--dur', (0.5 + Math.random() * 0.8).toFixed(2) + 's');
+                s.style.animationDelay = (Math.random() * 0.5).toFixed(2) + 's';
+                barra.appendChild(s);
+            }
+        })();
+
+        // ── Modal de aviso para links marcados ──
+        (function () {
+            const modal       = document.getElementById('modal-aviso');
+            const modalDest   = document.getElementById('modal-destino');
+            const btnCancelar = document.getElementById('modal-cancelar');
+            const btnConfirmar = document.getElementById('modal-confirmar');
+
+            let urlPendente = null;
+
+            // intercepta apenas os links com id="tem-certeza-de-clicar"
+            document.querySelectorAll('a[id="tem-certeza-de-clicar"]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    urlPendente = link.href;
+                    modalDest.textContent = urlPendente;
+                    modal.classList.add('visivel');
+                    btnConfirmar.focus();
+                });
+            });
+
+            btnCancelar.addEventListener('click', () => {
+                modal.classList.remove('visivel');
+                urlPendente = null;
+            });
+
+            btnConfirmar.addEventListener('click', () => {
+                if (urlPendente) {
+                    window.open(urlPendente, '_blank', 'noopener');
+                }
+                modal.classList.remove('visivel');
+                urlPendente = null;
+            });
+
+            // fecha com Escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('visivel')) {
+                    modal.classList.remove('visivel');
+                    urlPendente = null;
+                }
+            });
+
+            // fecha clicando fora da caixa
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('visivel');
+                    urlPendente = null;
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
