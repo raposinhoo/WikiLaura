@@ -1,0 +1,429 @@
+/* ══════════════════════════════════════════════════
+   fuzz.css — Flipnote Studio
+   WikiLaura × Fuzz The Cat
+   Aesthetic: caderno de animação do DSi —
+   papel quadriculado, tinta preta/vermelha,
+   moldura do player Flipnote
+   ══════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Special+Elite&family=VT323&display=swap');
+
+/* ── Variáveis ───────────────────────────────────── */
+:root {
+  --fn-paper:   #f7f5f0;
+  --fn-paper2:  #eeebe3;
+  --fn-grid:    rgba(160,148,120,0.18);
+  --fn-ink:     #1a1612;
+  --fn-ink2:    #2d2820;
+  --fn-red:     #cc1111;
+  --fn-red2:    #e83030;
+  --fn-blue:    #1a3a7a;       /* azul caneta */
+  --fn-canvas:  #0f0e0c;       /* canvas escuro do player */
+  --fn-canvas2: #1a1916;
+  --fn-white:   #f0eeea;
+  --fn-muted:   #7a7060;
+  --fn-rule:    rgba(160,140,100,0.25);
+}
+
+/* ── Override body — papel quadriculado ──────────── */
+body {
+  background-color: var(--fn-paper) !important;
+  background-image:
+    /* linhas horizontais */
+    linear-gradient(var(--fn-grid) 1px, transparent 1px),
+    /* linhas verticais */
+    linear-gradient(90deg, var(--fn-grid) 1px, transparent 1px),
+    /* textura de papel leve */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E") !important;
+  background-size: 28px 28px, 28px 28px, 400px 400px !important;
+  color: var(--fn-ink) !important;
+}
+
+/* margem vermelha vertical — caderno espiral */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 72px;
+  width: 2px; height: 100%;
+  background: rgba(204,17,17,0.2);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* furos de espiral no topo */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 72px; height: 100%;
+  background:
+    radial-gradient(circle 5px at 36px 40px,  var(--fn-paper2) 50%, transparent 50%),
+    radial-gradient(circle 5px at 36px 100px, var(--fn-paper2) 50%, transparent 50%),
+    radial-gradient(circle 5px at 36px 160px, var(--fn-paper2) 50%, transparent 50%),
+    radial-gradient(circle 5px at 36px 220px, var(--fn-paper2) 50%, transparent 50%),
+    radial-gradient(circle 5px at 36px 280px, var(--fn-paper2) 50%, transparent 50%),
+    radial-gradient(circle 5px at 36px 340px, var(--fn-paper2) 50%, transparent 50%),
+    radial-gradient(circle 5px at 36px 400px, var(--fn-paper2) 50%, transparent 50%),
+    radial-gradient(circle 5px at 36px 460px, var(--fn-paper2) 50%, transparent 50%),
+    radial-gradient(circle 5px at 36px 520px, var(--fn-paper2) 50%, transparent 50%),
+    radial-gradient(circle 5px at 36px 580px, var(--fn-paper2) 50%, transparent 50%),
+    radial-gradient(circle 5px at 36px 640px, var(--fn-paper2) 50%, transparent 50%),
+    radial-gradient(circle 5px at 36px 700px, var(--fn-paper2) 50%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Override header global ──────────────────────── */
+#wikilaura {
+  color: var(--fn-ink) !important;
+  background: none !important;
+  -webkit-text-fill-color: var(--fn-ink) !important;
+  text-shadow:
+    3px 3px 0 rgba(204,17,17,0.35),
+    -2px -2px 0 rgba(26,58,122,0.2) !important;
+  animation: none !important;
+  font-family: 'Special Elite', cursive !important;
+}
+
+#wikilaura:hover {
+  transform: rotate(-1deg) scale(1.02) !important;
+  text-shadow:
+    4px 4px 0 var(--fn-red),
+    -2px -2px 0 var(--fn-blue) !important;
+}
+
+#wikilaura2 {
+  color: var(--fn-muted) !important;
+  border-color: var(--fn-red) !important;
+  font-family: 'Patrick Hand', cursive !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* ── Wrapper — moldura do player Flipnote ────────── */
+#wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  margin-left: 88px; /* recua da margem vermelha */
+  padding-top: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* barra de título estilo Flipnote player */
+#wrapper::before {
+  content: 'FLIPNOTE STUDIO  ▶  FUZZ THE CAT  ■  ◀◀  ▶▶';
+  display: block;
+  background: var(--fn-canvas);
+  color: var(--fn-white);
+  font-family: 'VT323', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  padding: 0.45rem 1rem;
+  border: 2px solid var(--fn-ink2);
+  border-bottom: none;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+/* ── Layout ──────────────────────────────────────── */
+#content {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  gap: 0;
+  border: 2px solid var(--fn-ink2);
+  background: var(--fn-paper);
+}
+
+/* ── Painel lateral ──────────────────────────────── */
+#informacao-sobre-o-artigo {
+  background: var(--fn-paper2);
+  border-right: 2px solid var(--fn-ink2);
+  position: relative;
+  overflow: hidden;
+}
+
+/* tab de ficha manuscrita */
+#informacao-sobre-o-artigo::before {
+  content: 'FICHA';
+  display: block;
+  background: var(--fn-red);
+  color: var(--fn-white);
+  font-family: 'VT323', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  padding: 0.35rem 0.75rem;
+  border-bottom: 2px solid var(--fn-ink2);
+}
+
+#artigo-banner {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: top;
+  border-bottom: 2px solid var(--fn-ink2);
+  /* filtro Flipnote: bicolor como tela do DSi */
+  filter: grayscale(0.4) contrast(1.25) brightness(0.95);
+  transition: filter 0.3s;
+}
+
+#informacao-sobre-o-artigo:hover #artigo-banner {
+  filter: grayscale(0) contrast(1.1) brightness(1);
+}
+
+/* linhas da ficha — estilo manuscrito */
+#informacao-sobre-o-artigo tr,
+#informacao-sobre-o-artigo li {
+  display: block;
+  list-style: none;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--fn-rule);
+  font-family: 'Patrick Hand', cursive;
+  font-size: 0.9rem;
+  color: var(--fn-ink2);
+  line-height: 1.45;
+  transition: background 0.15s;
+  position: relative;
+}
+
+/* linha de pauta atrás do texto */
+#informacao-sobre-o-artigo li {
+  background-image: linear-gradient(
+    transparent calc(100% - 1px),
+    var(--fn-grid) calc(100% - 1px)
+  );
+}
+
+#informacao-sobre-o-artigo li::before {
+  content: '–';
+  color: var(--fn-red);
+  margin-right: 0.35rem;
+  font-weight: 700;
+}
+
+#informacao-sobre-o-artigo li:hover {
+  background-color: rgba(204,17,17,0.04);
+}
+
+/* override do span style="color:red" */
+#informacao-sobre-o-artigo span[style] {
+  color: var(--fn-red2) !important;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: var(--fn-red);
+}
+
+/* ── Conteúdo ────────────────────────────────────── */
+#conteudo {
+  padding: 1.4rem 1.6rem 1.2rem;
+  border-bottom: 2px solid var(--fn-rule);
+  /* pautas horizontais no fundo do conteúdo */
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 27px,
+    var(--fn-grid) 27px,
+    var(--fn-grid) 28px
+  );
+  background-position: 0 2.2rem;
+}
+
+/* Título */
+#titulo-artigo {
+  font-family: 'Special Elite', cursive;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--fn-ink);
+  line-height: 1.05;
+  margin-bottom: 0.3rem;
+  display: inline-block;
+  cursor: default;
+  position: relative;
+  /* bicolor tinta caneta azul+vermelha */
+  text-shadow:
+    2px 2px 0 rgba(204,17,17,0.5),
+    -2px -1px 0 rgba(26,58,122,0.35);
+  transition: text-shadow 0.25s, transform 0.25s;
+}
+
+#titulo-artigo:hover {
+  text-shadow:
+    3px 3px 0 var(--fn-red),
+    -3px -2px 0 var(--fn-blue);
+  transform: rotate(-0.5deg);
+}
+
+/* Separador — rabisco de sublinhado duplo */
+#separador {
+  height: 6px;
+  margin-bottom: 1.4rem;
+  margin-top: 0.5rem;
+  position: relative;
+  background: transparent;
+}
+
+#separador::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%; height: 2px;
+  background: var(--fn-ink);
+}
+
+#separador::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 4px;
+  width: 60%; height: 1.5px;
+  background: var(--fn-red);
+  opacity: 0.7;
+}
+
+/* Parágrafos */
+#conteudo p {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.05rem;
+  color: var(--fn-ink2);
+  line-height: 1.85;
+  margin-bottom: 0.85rem;
+  /* alinha com a pauta de fundo */
+  line-height: 28px;
+}
+
+/* destaque "Gatinho" */
+#cat-style {
+  font-family: 'Special Elite', cursive;
+  color: var(--fn-red2);
+  font-style: italic;
+  font-size: 1.05em;
+}
+
+/* Links */
+#conteudo a {
+  color: var(--fn-blue);
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-decoration-color: rgba(26,58,122,0.4);
+  font-weight: 700;
+  font-family: 'Patrick Hand', cursive;
+  transition: color 0.2s, text-decoration-color 0.2s;
+}
+
+#conteudo a:hover {
+  color: var(--fn-red);
+  text-decoration-color: var(--fn-red);
+  text-decoration-style: wavy;
+}
+
+/* ══════════════════════════════════════════════════
+   CANVAS DO FLIPNOTE — galeria como tela de animação
+   ══════════════════════════════════════════════════ */
+#galeria {
+  grid-column: 1 / -1;
+  background: var(--fn-canvas);
+  border-top: 2px solid var(--fn-ink2);
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  position: relative;
+}
+
+/* moldura superior do player */
+#galeria::before {
+  content: '';
+  display: block;
+  grid-column: 1 / -1;
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--fn-red) 0px, var(--fn-red) 10px,
+    var(--fn-canvas2) 10px, var(--fn-canvas2) 12px
+  );
+}
+
+/* label GALERIA estilo player */
+#galeria span {
+  grid-column: 1 / -1;
+  display: block;
+  font-family: 'VT323', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  color: rgba(240,238,234,0.5);
+  padding: 0.5rem 1rem 0.3rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  text-transform: uppercase;
+}
+
+#galeria span::before { content: '▶ '; color: var(--fn-red); }
+#galeria span::after  { content: ' ■■■■'; color: rgba(255,255,255,0.12); font-size: 0.6rem; vertical-align: middle; }
+
+/* grid de frames dentro do canvas */
+.galeria-frames {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 3px;
+  padding: 0.75rem 1rem 1rem;
+  background: var(--fn-canvas2);
+}
+
+#galeria img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border: 2px solid rgba(255,255,255,0.06);
+  filter: grayscale(0.3) contrast(1.3) brightness(0.85);
+  transition: filter 0.2s, border-color 0.2s, transform 0.2s;
+  cursor: zoom-in;
+  background: var(--fn-canvas);
+  max-height: 140px;
+}
+
+#galeria img:hover {
+  filter: grayscale(0) contrast(1.1) brightness(1);
+  border-color: var(--fn-red);
+  transform: scale(1.04);
+  position: relative;
+  z-index: 5;
+}
+
+/* placeholder para imagens sem src */
+#galeria img:not([src]), #galeria img[src=""] {
+  background:
+    linear-gradient(45deg, var(--fn-canvas2) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--fn-canvas2) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--fn-canvas2) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--fn-canvas2) 75%);
+  background-size: 8px 8px;
+  background-color: #0a0908;
+  filter: none;
+  cursor: default;
+  opacity: 0.4;
+  border-color: rgba(255,255,255,0.04);
+}
+
+/* contador de frames — rodapé do player */
+#galeria::after {
+  grid-column: 1 / -1;
+  content: '0001 / 0004  ◀  ■  ▶  ⟳  ✎';
+  display: block;
+  font-family: 'VT323', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: rgba(240,238,234,0.3);
+  padding: 0.4rem 1rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  text-align: center;
+}
+
+/* ── Animações ───────────────────────────────────── */
+@keyframes errBlink {
+  0%, 70%, 100% { opacity: 1; }
+  72%, 82%      { opacity: 0.2; }
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 760px) {
+  body::before, body::after { display: none; }
+  #wrapper { margin-left: 0; }
+  #content { grid-template-columns: 1fr; }
+  #galeria img { min-height: 80px; }
+}

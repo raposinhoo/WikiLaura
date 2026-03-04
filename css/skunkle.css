@@ -1,0 +1,344 @@
+/* ══════════════════════════════════════════════════
+   skunkle.css — Y2K Pastel Web / Neopets Era
+   WikiLaura × Skunkle
+   Aesthetic: início dos anos 2000, page de fã,
+   gradientes metálicos, estrelinhas e pixel art
+   ══════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:ital,wght@0,400;0,600;1,400&family=VT323&display=swap');
+
+/* ── Override global para tema claro ────────────── */
+body {
+  background-color: #f0e8ff !important;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ctext x='8' y='18' font-size='10' opacity='0.07' fill='%238b5cf6'%3E✦%3C/text%3E%3Ctext x='34' y='42' font-size='7' opacity='0.06' fill='%23ec4899'%3E★%3C/text%3E%3Ctext x='2' y='50' font-size='6' opacity='0.05' fill='%238b5cf6'%3E✿%3C/text%3E%3Ctext x='44' y='12' font-size='8' opacity='0.06' fill='%23a78bfa'%3E✦%3C/text%3E%3C/svg%3E"),
+    linear-gradient(160deg, #fdf4ff 0%, #f0e8ff 40%, #fce7f3 100%) !important;
+  background-size: 60px 60px, 100% 100% !important;
+  color: #2d1b4e !important;
+}
+
+/* Borda superior degradê metálico */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 4px;
+  background: linear-gradient(90deg,
+    #c084fc, #f472b6, #fb923c, #facc15,
+    #34d399, #60a5fa, #c084fc
+  );
+  background-size: 200% auto;
+  animation: shimmer 4s linear infinite;
+  z-index: 9999;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%,
+    rgba(192,132,252,0.07) 0%, transparent 60%
+  );
+  z-index: 0;
+}
+
+/* Override header global */
+#wikilaura {
+  -webkit-text-fill-color: transparent !important;
+  background: linear-gradient(135deg, #7c3aed, #db2777, #7c3aed) !important;
+  background-size: 200% auto !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  text-shadow: none !important;
+  animation: shimmer 5s linear infinite !important;
+  filter: drop-shadow(2px 3px 0 rgba(124,58,237,0.25));
+}
+
+#wikilaura:hover {
+  transform: perspective(600px) rotateX(10deg) scale(1.03) !important;
+  filter: drop-shadow(3px 4px 0 rgba(219,39,119,0.3)) !important;
+}
+
+#wikilaura2 {
+  color: #9d7cc0 !important;
+  border-color: #c084fc !important;
+}
+
+/* ── Variáveis ───────────────────────────────────── */
+:root {
+  --sk-bg:      #f0e8ff;
+  --sk-card:    #faf5ff;
+  --sk-purple:  #7c3aed;
+  --sk-pink:    #db2777;
+  --sk-lavender:#c084fc;
+  --sk-border:  #ddd6fe;
+  --sk-border2: #f9a8d4;
+  --sk-text:    #2d1b4e;
+  --sk-muted:   #7c6a9a;
+  --sk-gold:    #f59e0b;
+}
+
+/* ── Wrapper ─────────────────────────────────────── */
+#wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-top: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Layout ──────────────────────────────────────── */
+#content {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  grid-template-rows: auto auto;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* ── Painel lateral ──────────────────────────────── */
+#informacao-sobre-o-artigo {
+  background: var(--sk-card);
+  border: 2px solid var(--sk-border);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  box-shadow:
+    0 4px 0 var(--sk-border),
+    0 8px 24px rgba(124,58,237,0.1);
+}
+
+/* cabeçalho degradê metálico */
+#informacao-sobre-o-artigo::before {
+  content: '✦ PERSONAGEM ✦';
+  display: block;
+  background: linear-gradient(90deg, #c084fc, #f9a8d4, #c084fc);
+  background-size: 200% auto;
+  animation: shimmer 4s linear infinite;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 2px solid var(--sk-border);
+  font-family: 'VT323', monospace;
+  font-size: 0.9rem;
+  letter-spacing: 0.25em;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.25);
+}
+
+#banner {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: top center;
+  border-bottom: 2px solid var(--sk-border);
+  transition: filter 0.3s;
+}
+
+#banner:hover {
+  filter: brightness(1.05) saturate(1.1);
+}
+
+/* linhas da ficha */
+#informacao-sobre-o-artigo tr,
+#informacao-sobre-o-artigo li {
+  display: block;
+  list-style: none;
+  padding: 0.5rem 0.8rem;
+  border-bottom: 1px dashed var(--sk-border);
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.82rem;
+  color: var(--sk-muted);
+  line-height: 1.45;
+  transition: background 0.15s, color 0.15s;
+}
+
+#informacao-sobre-o-artigo li::before {
+  content: '✿ ';
+  color: var(--sk-pink);
+  font-size: 0.75em;
+}
+
+#informacao-sobre-o-artigo li:hover {
+  background: rgba(192,132,252,0.08);
+  color: var(--sk-text);
+}
+
+/* ── Conteúdo ────────────────────────────────────── */
+#conteudo { padding: 0; }
+
+/* Título */
+#titulo-artigo {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.4rem;
+  display: inline-block;
+  cursor: default;
+  background: linear-gradient(135deg, #7c3aed 0%, #db2777 50%, #7c3aed 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 6s linear infinite;
+  filter: drop-shadow(2px 3px 0 rgba(124,58,237,0.2));
+  transition: filter 0.3s, transform 0.3s;
+}
+
+#titulo-artigo:hover {
+  filter: drop-shadow(3px 5px 0 rgba(219,39,119,0.3));
+  transform: rotate(-1.5deg) scale(1.02);
+  animation: shimmer 1.5s linear infinite;
+}
+
+/* Separador — linha de corações/estrelas */
+#separador {
+  height: 1.2rem;
+  margin-bottom: 1.4rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow: hidden;
+}
+
+#separador::before {
+  content: '✦ ✿ ♡ ★ ✦ ✿ ♡ ★ ✦ ✿ ♡ ★ ✦ ✿ ♡ ★ ✦ ✿ ♡ ★ ✦ ✿ ♡ ★ ✦ ✿ ♡ ★';
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  color: var(--sk-lavender);
+  opacity: 0.55;
+  white-space: nowrap;
+  animation: tickerScroll 12s linear infinite;
+  display: block;
+}
+
+@keyframes tickerScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Parágrafos */
+#conteudo p {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  color: var(--sk-text);
+  line-height: 1.85;
+  margin-bottom: 1rem;
+}
+
+/* p > p ("Chara") */
+#conteudo p > p {
+  display: inline;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  color: var(--sk-pink) !important;
+  font-size: 1.05em;
+}
+
+/* Links */
+#conteudo a {
+  color: var(--sk-purple);
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 2px solid rgba(192,132,252,0.4);
+  transition: border-color 0.2s, color 0.2s;
+}
+
+#conteudo a:hover {
+  color: var(--sk-pink);
+  border-color: var(--sk-pink);
+}
+
+/* ── Galeria ─────────────────────────────────────── */
+#galeria {
+  grid-column: 1 / -1;
+  padding: 1.4rem 1.6rem 1.8rem;
+  background: var(--sk-card);
+  border: 2px solid var(--sk-border);
+  border-radius: 16px;
+  box-shadow: 0 4px 0 var(--sk-border), 0 8px 24px rgba(124,58,237,0.08);
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.8rem;
+  align-items: flex-start;
+}
+
+/* faixa degradê no topo */
+#galeria::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 5px;
+  background: linear-gradient(90deg, #c084fc, #f9a8d4, #60a5fa, #34d399, #c084fc);
+  background-size: 200% auto;
+  animation: shimmer 4s linear infinite;
+  border-radius: 14px 14px 0 0;
+}
+
+/* título da galeria */
+#galeria > p:first-child {
+  flex: 0 0 100%;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--sk-purple);
+  margin: 0 0 0.6rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed var(--sk-border);
+}
+
+#galeria > p:first-child::before { content: '✦ '; color: var(--sk-lavender); }
+#galeria > p:first-child::after  { content: ' ✦'; color: var(--sk-lavender); }
+
+/* fotos — card estilo adesivo */
+#galeria img {
+  flex: 1 1 140px;
+  max-width: 190px;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 3px solid #fff;
+  box-shadow:
+    0 0 0 2px var(--sk-border),
+    3px 5px 16px rgba(124,58,237,0.15),
+    6px 8px 24px rgba(0,0,0,0.06);
+  cursor: zoom-in;
+  transition: transform 0.3s cubic-bezier(0.23,1,0.32,1), box-shadow 0.3s;
+  position: relative;
+}
+
+/* rotações alternadas */
+#galeria img:nth-child(2) { transform: rotate(-3deg); }
+#galeria img:nth-child(3) { transform: rotate(2deg);  }
+#galeria img:nth-child(4) { transform: rotate(-1.5deg); }
+#galeria img:nth-child(5) { transform: rotate(3deg); }
+
+#galeria img:hover {
+  transform: rotate(0deg) scale(1.07) translateY(-6px) !important;
+  box-shadow:
+    0 0 0 3px var(--sk-lavender),
+    6px 12px 32px rgba(124,58,237,0.25),
+    0 2px 8px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+/* ── Animações ───────────────────────────────────── */
+@keyframes shimmer {
+  from { background-position: 0% center; }
+  to   { background-position: 200% center; }
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 700px) {
+  #content { grid-template-columns: 1fr; }
+  #galeria img { max-width: 160px; }
+}
